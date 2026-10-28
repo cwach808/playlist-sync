@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>playlist-sync</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4338CA"/>
+      <stop offset="0.55" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#C026D3"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.3" cy="0.2" r="0.8">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="112" fill="url(#glow)"/>
+  <path d="M121.9 193.5 A148 148 0 0 1 372.6 164.9" fill="none" stroke="#fff" stroke-width="34" stroke-linecap="round"/><path d="M397.3 196.4 L400.5 135.5 L337.4 184.8 Z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M390.1 318.5 A148 148 0 0 1 139.4 347.1" fill="none" stroke="#fff" stroke-width="34" stroke-linecap="round"/><path d="M114.7 315.6 L111.5 376.5 L174.6 327.2 Z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+  <g fill="#fff">
+    <ellipse cx="216" cy="306" rx="30" ry="23" transform="rotate(-22 216 306)"/>
+    <ellipse cx="304" cy="290" rx="30" ry="23" transform="rotate(-22 304 290)"/>
+    <rect x="232" y="196" width="14" height="112" rx="3"/>
+    <rect x="320" y="180" width="14" height="112" rx="3"/>
+    <path d="M232 196 L334 178 L334 210 L232 228 Z"/>
+  </g>
+</svg>

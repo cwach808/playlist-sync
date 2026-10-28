@@ -1,0 +1,48 @@
+# Weekly sync on GitHub Actions. Copy to .github/workflows/ in YOUR fork.
+#
+# One-time setup, on your computer:
+#   1. Log in. For Spotify, include your Client Secret, because Actions can't save
+#      rotated PKCE tokens:
+#        SPOTIFY_CLIENT_SECRET=... playlist-sync auth spotify
+#        playlist-sync auth ytmusic
+#   2. Link playlists with the state dir inside the repo, then commit it:
+#        PLAYLIST_SYNC_HOME=state playlist-sync copy URL --to spotify
+#        git add -f state/state.db && git commit -m "Add sync state"
+#   3. Run `playlist-sync auth export` and add each line as a repository secret
+#      (Settings > Secrets and variables > Actions). Also add SPOTIFY_CLIENT_SECRET.
+#   4. Settings > Actions > General > Workflow permissions: "Read and write".
+#
+# Logins only ever exist in secrets and memory; nothing sensitive is committed.
+name: weekly-sync
+
+on:
+  schedule:
+    - cron: "0 15 * * 1"  # Mondays 15:00 UTC
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      PLAYLIST_SYNC_HOME: state
+      SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+      PLAYLIST_SYNC_SPOTIFY_CLIENT_ID: ${{ secrets.PLAYLIST_SYNC_SPOTIFY_CLIENT_ID }}
+      PLAYLIST_SYNC_SPOTIFY_TOKEN: ${{ secrets.PLAYLIST_SYNC_SPOTIFY_TOKEN }}
+      PLAYLIST_SYNC_GOOGLE_TOKEN: ${{ secrets.PLAYLIST_SYNC_GOOGLE_TOKEN }}
+      PLAYLIST_SYNC_YTMUSIC_BROWSER: ${{ secrets.PLAYLIST_SYNC_YTMUSIC_BROWSER }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install .
+      - run: playlist-sync sync --verbose
+      - name: Commit state
+        if: always()
+        run: |
+          git config user.name "playlist-sync bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -f state/state.db  # state/ is gitignored for local use
+          git diff --cached --quiet || git commit -m "chore: sync state" && git push

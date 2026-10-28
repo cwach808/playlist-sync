@@ -1,0 +1,11 @@
+# Opens pull requests when dependencies or GitHub Actions have updates or security fixes.
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
