@@ -11,7 +11,7 @@ license = "MIT"
 authors = [{ name = "Christina Wachter" }]
 requires-python = ">=3.11"
 dependencies = [
-    "google-auth-oauthlib>=1.2",
+    "google-auth-oauthlib>=1.5.0",
     "httpx>=0.27",
     "keyring>=25",
     "spotipy>=2.25",
