@@ -25,7 +25,7 @@ Repository = "https://github.com/cwach808/playlist-sync"
 Issues = "https://github.com/cwach808/playlist-sync/issues"
 
 [project.optional-dependencies]
-dev = ["bandit>=1.8", "pip-audit>=2.7", "pytest>=8", "ruff>=0.6"]
+dev = ["bandit>=1.8", "pip-audit>=2.10.1", "pytest>=8", "ruff>=0.6"]
 
 [project.scripts]
 playlist-sync = "playlist_sync.cli:app"
